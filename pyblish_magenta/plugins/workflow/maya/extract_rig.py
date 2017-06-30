@@ -4,13 +4,12 @@ import pyblish_maya
 import pyblish_magenta.api
 
 
-class ExtractMayaAscii(pyblish_magenta.api.Extractor):
+class ExtractRig(pyblish_magenta.api.Extractor):
     """Extract as Maya Ascii"""
 
-    label = "Maya ASCII"
+    label = "Extract Rig (Maya ASCII)"
     hosts = ["maya"]
     families = ["rig"]
-    optional = True
 
     def process(self, instance):
         from maya import cmds
@@ -29,6 +28,9 @@ class ExtractMayaAscii(pyblish_magenta.api.Extractor):
                       typ="mayaAscii",
                       exportSelected=True,
                       preserveReferences=False,
+                      channels=True,
+                      constraints=True,
+                      expressions=True,
                       constructionHistory=True)
 
         self.log.info("Extracted instance '{0}' to: {1}".format(
