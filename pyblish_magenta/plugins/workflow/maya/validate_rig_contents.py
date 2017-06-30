@@ -50,7 +50,7 @@ class ValidateRigContents(pyblish.api.InstancePlugin):
         not_transforms = list()
         for node in cmds.sets("controls_SET", query=True) or []:
             if cmds.nodeType(node) != "transform":
-                not_meshes.append(node)
+                not_transforms.append(node)
 
         assert not_transforms == [], (
             "Only transforms can be part of the controls_SET: %s"
